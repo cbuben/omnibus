@@ -126,7 +126,7 @@
   (let [
         asset-name (str project-name "-" version "-" iteration "-" (os-data :platform) "-" (os-data :platform_version) "-" (os-data :machine) ".tar.gz")
         asset-path (.toString (file-str *omnibus-pkg-dir* "/" asset-name))
-        status (sh "tar" "czf" asset-path "opscode" :dir "/opt")]
+        status (sh "gtar" "czf" asset-path "opscode" :dir "/opt")]
     (log-sh-result status
                    (do
                      (put-in-bucket asset-path @*bucket-name* (str (os-data :platform) "-" (os-data :platform_version) "-" (os-data :machine) "/" asset-name) @*s3-access-key* @*s3-secret-key*) 

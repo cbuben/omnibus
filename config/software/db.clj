@@ -19,6 +19,6 @@
 
 (software "db" :source "db-5.0.26.NC"
                :build-subdir "build_unix"
-               :steps [{:command "../dist/configure" :args ["--prefix=/opt/opscode/embedded"]}
+               :steps [{:env {"CC" "gcc"} :command "../dist/configure" :args ["--prefix=/opt/opscode/embedded"]}
                        {:command "make"}
                        {:command "make" :args ["install"]}])

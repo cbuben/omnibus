@@ -31,9 +31,9 @@
             })]
 (software "ncurses" :source "ncurses-5.7"
           :steps [ {
-		   :env {"LD_RUN_PATH" "/opt/opscode/embedded/lib"} 
+		   :env {"LD_RUN_PATH" "/opt/opscode/embedded/lib" "CC" "gcc" "CXX" "g++" }
                    :command "./configure"
-                   :args ["--prefix=/opt/opscode/embedded" "--with-shared" "--without-debug"]}
+                   :args ["--prefix=/opt/opscode/embedded" "--without-cxx-binding" "--with-shared" "--without-debug"]}
                   {:env {"LD_RUN_PATH" "/opt/opscode/embedded/lib"} :command "make"}
                   {:env {"LD_RUN_PATH" "/opt/opscode/embedded/lib"} :command "make" :args ["install"]}])
 

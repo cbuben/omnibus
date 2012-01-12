@@ -28,6 +28,9 @@
        (is-os? "solaris2")
        { "CFLAGS" "-L/opt/opscode/embedded/lib -I/opt/opscode/embedded/include"
          "LDFLAGS" "-R/opt/opscode/embedded/lib -L/opt/opscode/embedded/lib -I/opt/opscode/embedded/include"}
+       (is-os? "aix")
+       { "CFLAGS" "-L/opt/opscode/embedded/lib -I/opt/opscode/embedded/include"
+         "LDFLAGS" "-L/opt/opscode/embedded/lib -I/opt/opscode/embedded/include"}
        )
       ]
   (software "ruby"

@@ -43,6 +43,19 @@
                                        "-I/opt/opscode/embedded/include"
                                        "-R/opt/opscode/embedded/lib"]
                                }
+                              (is-os? "aix")
+                              {
+                                :env {"LD_RUN_PATH" "/opt/opscode/embedded/lib"}
+                                :command "./Configure"
+                                :args ["aix-gcc"
+                                       "--prefix=/opt/opscode/embedded"
+                                       "--with-zlib-lib=/opt/opscode/embedded/lib"
+                                       "--with-zlib-include=/opt/opscode/embedded/include"
+                                       "zlib"
+                                       "shared"
+                                       "-L/opt/opscode/embedded/lib"
+                                       "-I/opt/opscode/embedded/include"]
+                               }
                               true
                               {
                                 :env {"LD_RUN_PATH" "/opt/opscode/embedded/lib"}

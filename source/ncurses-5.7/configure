@@ -5074,6 +5074,10 @@ echo "${ECHO_T}$cf_cv_ldflags_search_paths_first" >&6
 			LDFLAGS="$LDFLAGS -Wl,-search_paths_first"
 		fi
 		;;
+	aix*)
+		CC_SHARED_OPTS=
+		MK_SHARED_LIB='gcc -shared -o $@'
+		;;
 	hpux*)
 		# (tested with gcc 2.7.2 -- I don't have c89)
 		if test "$GCC" = yes; then
