@@ -32,6 +32,15 @@ end
 # If we are stop/waiting, start
 #
 # Why, upstart, aren't you idempotent? :(
-execute "service opscode-runsvdir start" do
+
+# CHEF-3023: /sbin/service doesn't speak upstart on RHEL and derivatives.
+start_cmd = case node["platform"]
+when "redhat","centos","rhel","scientific"
+  "initctl start opscode-runsvdir"
+else
+  "service opscode-runsvdir start"
+end
+
+execute start_cmd do
   only_if "initctl status opscode-runsvdir | grep stop"
 end
