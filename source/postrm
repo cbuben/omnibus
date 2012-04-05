@@ -1,9 +1,16 @@
 #!/bin/bash
 
-# Clean up binary symlinks if they exist
-rm -f /usr/bin/chef-client
-rm -f /usr/bin/chef-solo
-rm -f /usr/bin/shef
-rm -f /usr/bin/knife
-rm -f /usr/bin/ohai
-
+# CHEF-3022
+# Make postrm safe under update for RPM, while preserving correct semantics for
+# dpkg (hopefully).
+#
+# "$1" == 0 catches the rpm removal case.
+# "$1" == "remove" catches the dpkg remove/purge case.
+if [ "$1" == 0 -o "$1" == "remove" ]; then
+  # Clean up binary symlinks if they exist
+  rm -f /usr/bin/chef-client
+  rm -f /usr/bin/chef-solo
+  rm -f /usr/bin/shef
+  rm -f /usr/bin/knife
+  rm -f /usr/bin/ohai
+fi
